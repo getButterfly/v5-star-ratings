@@ -1,0 +1,47 @@
+.rating-container {
+    margin: 24px 0;
+}
+
+.mnstr_msg {
+    display: none;
+    font-size: 10px;
+}
+.mnstr_err {
+    color: #F00;
+}
+.mnstr_success {
+    color: #090;
+}
+
+.mn_overlay_msg{
+    color: #800000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    line-height: 50px;
+    height: 50px;
+    margin-left: -150px;
+    margin-top: -25px;
+    background-color: #f1c40f;
+    text-align: center;
+
+    z-index: 10;
+    outline: 9999px solid rgba(0,0,0,0.5);
+    display: none;
+}
+.mnstr_msg {
+    background: #2185c5;
+    bottom: 0;
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    left: 0;
+    margin: 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 99999;
+    padding:0;
+    line-height:2.5;
+}
