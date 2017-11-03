@@ -1,6 +1,6 @@
 # V5 Star Ratings
 
-Version: 0.9.0
+Version: 0.9.2
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Support me on Patreon](http://ionicabizau.github.io/badges/patreon.svg)](https://www.patreon.com/getbutterfly)

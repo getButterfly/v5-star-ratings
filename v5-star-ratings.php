@@ -3,7 +3,7 @@
 Plugin Name: V5 Star Ratings
 Plugin URI: https://getbutterfly.com/downloads/v5-star-ratings
 Description: Flexible star ratings plugin with multiple options for appearance and behaviour.
-Version: 0.9.1
+Version: 0.9.2
 Author: getButterfly
 Author URI: https://getbutterfly.com
 License: GPLv3
@@ -408,13 +408,21 @@ function vote5_star_rating() {
     return $out;
 }
 
-function vote5_star_rating_widget() {
+function vote5_star_rating_widget($atts) {
+    extract(shortcode_atts(array(
+        'size' => 'thumbnail',
+        'limit' => 10,
+    ), $atts));
+
     global $wpdb;
 
-    $out = '<ul>';
-        $result = $wpdb->get_results("SELECT post_id, AVG(rating) AS post_average FROM " . $wpdb->prefix . "v5_star_ratings GROUP BY post_id ORDER BY post_average DESC LIMIT 10");
+    $out = '<ul class="v5-widget">';
+        $result = $wpdb->get_results("SELECT post_id, AVG(rating) AS post_average FROM " . $wpdb->prefix . "v5_star_ratings GROUP BY post_id ORDER BY post_average DESC LIMIT " . $limit);
         foreach ($result as $row) {
-            $out .= '<li><a href="' . get_permalink($row->post_id) . '">' . get_the_title($row->post_id) . '</a> (' . number_format($row->post_average, 2) . ')</li>';
+            $out .= '<li>
+                <div><a href="' . get_permalink($row->post_id) . '">' . get_the_post_thumbnail($row->post_id, $size) . '</a></div>
+                <a href="' . get_permalink($row->post_id) . '">' . get_the_title($row->post_id) . '</a> (' . number_format($row->post_average, 2) . ')
+            </li>';
         }
     $out .= '</ul>';
 

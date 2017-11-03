@@ -3,7 +3,7 @@ Contributors: butterflymedia
 Tags: ratings, 5 star, stars, votes, voting, post rating, multi star rating, rating widget, star rating widget, ajax rating
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 0.9.1
+Stable tag: 0.9.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,11 @@ V5 Star Ratings WordPress plugin allows you to create and manage ratings from wi
 
 == Changelog ==
 
-= 0.9.0 =
+= 0.9.2 =
+* FIX: Fixed previous version number
+* UPDATE: Updated top widget to allow images and arguments
+
+= 0.9.1 =
 * FIX: Fixed logged-in users not being allowed to vote
 * FIX: Fixed missing session variables
 * FIX: Fixed wrong variable name
