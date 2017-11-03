@@ -3,7 +3,7 @@
 Plugin Name: V5 Star Ratings
 Plugin URI: https://getbutterfly.com/downloads/v5-star-ratings
 Description: Flexible star ratings plugin with multiple options for appearance and behaviour.
-Version: 0.9.0
+Version: 0.9.1
 Author: getButterfly
 Author URI: https://getbutterfly.com
 License: GPLv3
@@ -121,14 +121,8 @@ function init_mn_star_rating() {
 		$_SESSION['mn_star_rating_overrite'] = get_option('mn_star_rating_overrite');
 		$_SESSION['mn_star_rate_user_data'] = get_option('mn_star_rate_user_data');
 		$_SESSION['rate_after_login'] = false;
-		$_SESSION['loggedin'] = false;
-		if($_SESSION['mn_star_rate_user_data'] == 'email'){
+		if ($_SESSION['mn_star_rate_user_data'] == 'email'){
 			$_SESSION['rate_after_login'] = true;
-			if($_SESSION['mn_cur_usr_email'] != ''){
-				$_SESSION['loggedin'] = true;
-			}else{
-				$_SESSION['loggedin'] = false;
-			}
 		}
 		mnstr_load_file( 'mnstr-jquery-rating', '/js/jRating.jquery.js', true );
 		mnstr_load_file( 'mnstr-public-script', '/js/widget.js', true );
@@ -189,7 +183,17 @@ function mnstr_load_file( $name, $file_path, $is_script = false ) {
 
 	if( file_exists( $file ) ) {
 		if( $is_script ) {
-			wp_register_script( $name, $url, array('jquery') );
+            $loggedIn = false;
+            if (is_user_logged_in()) {
+                $loggedIn = true;
+            }
+
+            $rateAfterlogin = false;
+            if (get_option('mn_star_rate_user_data') === 'email') {
+                $rateAfterlogin = true;
+            }
+
+            wp_register_script( $name, $url, array('jquery') );
 			wp_enqueue_script( $name );
 			wp_localize_script( $name, 'mnsr_ajax', array(
 				'pluginurl' => plugin_dir_url(__FILE__),
@@ -201,10 +205,9 @@ function mnstr_load_file( $name, $file_path, $is_script = false ) {
 				'mn_star_maximum_rating' => get_option('mn_star_maximum_rating'),
 				'mn_star_hover_color' => get_option('mn_star_hover_color'),
 				'mn_star_rating_color' => get_option('mn_star_rating_color'),
-				'mn_loggedin' => $_SESSION['loggedin'],
-				'rate_after_login' => $_SESSION['rate_after_login']
-				)
-			);
+				'mn_loggedin' => $loggedIn,
+				'rate_after_login' => $rateAfterlogin
+            ));
 		} else {
 			wp_register_style( $name, $url );
 			wp_enqueue_style( $name );
