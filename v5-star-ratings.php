@@ -3,7 +3,7 @@
 Plugin Name: V5 Star Ratings
 Plugin URI: https://getbutterfly.com/downloads/v5-star-ratings
 Description: Flexible star ratings plugin with multiple options for appearance and behaviour.
-Version: 0.9.2
+Version: 0.9.3
 Author: getButterfly
 Author URI: https://getbutterfly.com
 License: GPLv3
@@ -195,7 +195,7 @@ function mnstr_load_file( $name, $file_path, $is_script = false ) {
 
             wp_register_script( $name, $url, array('jquery') );
 			wp_enqueue_script( $name );
-			wp_localize_script( $name, 'mnsr_ajax', array(
+			wp_localize_script( $name, 'v5Ajax', array(
 				'pluginurl' => plugin_dir_url(__FILE__),
 				'mn_rating_enable_post' => get_option('mn_rating_enable_post'),
 				'mn_rating_enable_pages' => get_option('mn_rating_enable_pages'),
